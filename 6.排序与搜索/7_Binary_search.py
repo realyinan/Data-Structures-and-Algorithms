@@ -1,16 +1,19 @@
 def binary_search(alist, item):
-    """递归版本"""
     n = len(alist)
     if n > 0:
         mid = n//2
         if alist[mid] == item:
-            return True
-        elif item < alist[mid]:
+            return mid
+        elif alist[mid] > item:
             return binary_search(alist[:mid], item)
         else:
-            return binary_search(alist[mid+1:], item)
+            res = binary_search(alist[mid+1:], item)
+            if res != -1:
+                return mid+1+res
+            else:
+                return -1
     else:
-        return False
+        return -1
     
 def binary_search_1(alist, item):
     """非递归版本"""
